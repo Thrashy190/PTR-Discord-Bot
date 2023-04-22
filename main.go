@@ -52,7 +52,10 @@ func ping(s*discordgo.Session, m*discordgo.MessageCreate) {
 
 
 func main() {
-	discord, err := discordgo.New("Bot " + "MTA5OTQxOTc4MTI4ODk3MjM5MQ.GhrI1i.8_zXjYGp78bNXcWekQw1-hJSukYQVyadAZXtGI")
+
+	token := os.Getenv("TOKEN")
+
+	discord, err := discordgo.New("Bot " + token)
 	if err != nil {
 		panic(err)
 	}
