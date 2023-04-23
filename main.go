@@ -7,28 +7,10 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/Thrashy190/PTR-Discord-bot/pkg/handlers"
 	"github.com/bwmarrin/discordgo"
 )
 
-
-func roles(s*discordgo.Session, m*discordgo.MessageCreate) {
-	if m.Author.ID == s.State.User.ID {
-		return
-	}
-
-	//genera una carta con un header y un footer de prueba
-	if m.Content == "carta" {
-		embed := &discordgo.MessageEmbed{
-			Title: "Carta de prueba",
-			Description: "Esto es una carta de prueba",
-			Color: 0x00ff00,
-			Footer: &discordgo.MessageEmbedFooter{
-				Text: "Footer de prueba",
-			},
-		}
-		s.ChannelMessageSendEmbed(m.ChannelID, embed)
-	}
-}
 
 func hello(s*discordgo.Session, m*discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
@@ -53,16 +35,16 @@ func ping(s*discordgo.Session, m*discordgo.MessageCreate) {
 
 func main() {
 
-	token := os.Getenv("TOKEN")
+	//token := os.Getenv("TOKEN")
 
-	discord, err := discordgo.New("Bot " + token)
+	discord, err := discordgo.New("Bot " + "MTA5OTQxOTc4MTI4ODk3MjM5MQ.GOMqH3.VOybSu3dK8E2TJhmZr6IolhK8zGMp_zUQLTS2U")
 	if err != nil {
 		panic(err)
 	}
-
-	discord.AddHandler(ping)
-	discord.AddHandler(hello)
-	discord.AddHandler(roles)
+	
+	discord.AddHandler(handlers.Ping)
+	discord.AddHandler(handlers.Health)
+	discord.AddHandler(handlers.ShowRoles)
 
 	discord.Identify.Intents = discordgo.IntentsAllWithoutPrivileged
 
