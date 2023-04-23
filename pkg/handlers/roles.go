@@ -20,36 +20,44 @@ func ShowRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
 			Description: "Selecciona un rol para obtener acceso a los canales de texto y voz correspondientes",
 			Color:       0x4459DF,
 			Author: &discordgo.MessageEmbedAuthor{
-				IconURL: "https://cdn.discordapp.com/attachments/819496062769440020/820000000000000000/LogoPTR.png",
+				IconURL: "",
 				Name:    "PTR5.0",
 			},
 			Fields: []*discordgo.MessageEmbedField{
 				{
-					Name:   "Roles generales",
-					Value:  "@Tlatoani  --Admin principal\n @Semidioses  --Moderadores\n @Humanos  --Rol general",
-					
+					Name:  "Roles generales",
+					Value: "@ Tlatoani",
 				},
 				{
-					Name:   "Roles que puedes elegir",
-					Value:  "Descripcion del rol 2",
+					Name:  "Roles que puedes elegir",
+					Value: "Descripcion del rol 2",
 				},
 			},
 		}
 
 		button := []discordgo.Button{
 			{
+				Emoji: discordgo.ComponentEmoji{
+					Name: "🌎",
+				},
 				Label:    "Minecraft Player",
 				Style:    discordgo.PrimaryButton,
 				CustomID: "rol1",
 			},
 			{
-				Label: "BanditaEsport",
-				Style: discordgo.PrimaryButton,
+				Emoji: discordgo.ComponentEmoji{
+					Name: "🎮",
+				},
+				Label:    "BanditaEsport",
+				Style:    discordgo.PrimaryButton,
 				CustomID: "rol2",
 			},
 			{
-				Label: "DnD Player",
-				Style: discordgo.PrimaryButton,
+				Emoji: discordgo.ComponentEmoji{
+					Name: "🗡",
+				},
+				Label:    "DnD Player",
+				Style:    discordgo.PrimaryButton,
 				CustomID: "rol3",
 			},
 		}
