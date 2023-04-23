@@ -6,27 +6,37 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-
-func Health(s*discordgo.Session, m*discordgo.MessageCreate) {
+func Health(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
-	//give me de bot status with the command Health with a 200 status code
-
 	if m.Content == "health" {
-		s.ChannelMessageSend(m.ChannelID, s.State.User.Username+" is running!")
+		s.ChannelMessageSend(m.ChannelID, s.State.User.Username+" is running! ")
 		log.Println("Health command executed")
 	}
 }
 
-func Ping(s*discordgo.Session, m*discordgo.MessageCreate) {
+func Ping(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
 	if m.Content == "ping" {
-		s.ChannelMessageSend(m.ChannelID, "pong")
+		s.ChannelMessageSend(m.ChannelID, "png")
 		log.Println("Ping command executed")
+	}
+}
+
+func RolesOfUser(s *discordgo.Session, m *discordgo.MessageCreate) {
+	if m.Author.ID == s.State.User.ID {
+		return
+	}
+
+	//Give the Rol of the user that execute the command rolesList
+
+	if m.Content == "rolesList" {
+		s.ChannelMessageSend(m.ChannelID, m.Author.Username+" has the following roles: "+m.GuildID)
+		log.Println("RolesList command executed")
 	}
 }

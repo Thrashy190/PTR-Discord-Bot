@@ -1,17 +1,19 @@
 package main
 
 import (
-	"github.com/Thrashy190/PTR-Discord-bot/pkg/config"
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 
+	"github.com/Thrashy190/PTR-Discord-bot/pkg/config"
 	"github.com/Thrashy190/PTR-Discord-bot/pkg/handlers"
 	"github.com/bwmarrin/discordgo"
 )
 
 func main() {
+
 	config.Init()
 	token := os.Getenv("TOKEN")
 
@@ -20,9 +22,10 @@ func main() {
 		panic(err)
 	}
 
+	discord.AddHandler(handlers.RolesOfUser)
 	discord.AddHandler(handlers.Ping)
 	discord.AddHandler(handlers.Health)
-	discord.AddHandler(handlers.ShowRoles)
+	discord.AddHandler(handlers.ShowAndSelectRoles)
 
 	discord.Identify.Intents = discordgo.IntentsAllWithoutPrivileged
 
@@ -32,7 +35,7 @@ func main() {
 	}
 	defer discord.Close()
 
-	log.Println("Bot is running!")
+	fmt.Println("Bot is running!")
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)

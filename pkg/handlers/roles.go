@@ -2,19 +2,20 @@ package handlers
 
 import (
 	"log"
+	"os"
 
 	"github.com/bwmarrin/discordgo"
 )
 
-func ShowRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
+func ShowAndSelectRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
+
+	RolesChannelID := os.Getenv("ROLES_CHANNEL_ID")
+
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
-	//genera una carta con un header y un footer de prueba y la envia al canal Roles ademas de poner 3 botones abajo
 	if m.Content == "roles" {
-
-		//crea el embed
 		embed := &discordgo.MessageEmbed{
 			Title:       "Roles",
 			Description: "Selecciona un rol para obtener acceso a los canales de texto y voz correspondientes",
@@ -23,10 +24,11 @@ func ShowRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
 				IconURL: "",
 				Name:    "PTR5.0",
 			},
+
 			Fields: []*discordgo.MessageEmbedField{
 				{
 					Name:  "Roles generales",
-					Value: "@ Tlatoani",
+					Value: "<@Tlatoani>",
 				},
 				{
 					Name:  "Roles que puedes elegir",
@@ -62,8 +64,8 @@ func ShowRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
 			},
 		}
 
-		s.ChannelMessageSendEmbed(m.ChannelID, embed)
-		s.ChannelMessageSendComplex(m.ChannelID, &discordgo.MessageSend{
+		s.ChannelMessageSendEmbed(RolesChannelID, embed)
+		s.ChannelMessageSendComplex(RolesChannelID, &discordgo.MessageSend{
 			Components: []discordgo.MessageComponent{
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{
