@@ -28,7 +28,7 @@ func ShowAndSelectRoles(s *discordgo.Session, m *discordgo.MessageCreate) {
 			Fields: []*discordgo.MessageEmbedField{
 				{
 					Name:  "Roles generales",
-					Value: "<@Tlatoani>",
+					Value: "< @Tlatoani >",
 				},
 				{
 					Name:  "Roles que puedes elegir",

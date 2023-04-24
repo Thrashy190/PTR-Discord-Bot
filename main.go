@@ -22,10 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	discord.AddHandler(handlers.RolesOfUser)
 	discord.AddHandler(handlers.Ping)
-	discord.AddHandler(handlers.Health)
-	discord.AddHandler(handlers.ShowAndSelectRoles)
 
 	discord.Identify.Intents = discordgo.IntentsAllWithoutPrivileged
 

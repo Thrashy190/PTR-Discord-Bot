@@ -10,6 +10,7 @@ func Health(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
+	
 
 	if m.Content == "health" {
 		s.ChannelMessageSend(m.ChannelID, s.State.User.Username+" is running! ")
@@ -33,7 +34,7 @@ func RolesOfUser(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	//Give the Rol of the user that execute the command rolesList
+	discordgo. 
 
 	if m.Content == "rolesList" {
 		s.ChannelMessageSend(m.ChannelID, m.Author.Username+" has the following roles: "+m.GuildID)
